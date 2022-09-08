@@ -1,0 +1,276 @@
+* {
+    padding: 0;
+    margin: 0;
+    text-decoration: none;
+    font-family: Verdana, Geneva, Tahoma, sans-serif;
+
+}
+h1 {
+    font-size: 24px;
+    margin-bottom: 30px;
+}
+.wrapper {
+    min-height: 100vh;
+    display: grid;
+    /* 
+    ВЫСОТА БЛОКОВ: 
+    ряд 1: шапка (минимальная высота 100px, макс. auto),
+    ряд 2: все остальное тег main (1fr), таким образом мы прибиваеи подвал к низу 
+    ряд 3: подвал мин. 70px макс. auto
+    колонки во всю ширину 1fr
+    */
+    grid-template: minmax(140px, auto) 1fr minmax(140px, auto) / 1fr;   
+    /* даем названия элементам, для понятности */
+    grid-template-areas: 
+        "header"
+        "main"
+        "footer";
+}
+
+/* =============== header ================== */
+
+.header {
+    grid-area: header;
+    background-color: #182e49;
+    display: grid;
+    grid-template: 1fr 1fr / 1fr minmax(auto, 300px) minmax(auto, 450px) minmax(auto, 300px) minmax(auto, 150px) 1fr;
+    align-items: center;
+    color: #fff;
+    padding: 0 15px;
+}
+.heaader_logo {
+    grid-column: 2 / 3;
+}
+.header_menu {
+    grid-column: 2 / 3;
+    grid-row: 2 / 3;
+}
+.header_menu a {
+    color: #fff;
+}
+.header_seach {
+    grid-column: 4 / 6;
+}
+.header_list {
+    display: grid;
+    grid-auto-flow: column;
+    list-style: none;
+    /* 
+    grid-auto-flow автоматическое заполнение калонок */
+}
+.search {
+	position: relative;
+}
+.search input {
+	border: none;
+}
+.search .input {
+	width: 100%;
+	padding: 8px 37px 9px 15px;
+	background: #385074;
+	font-size: 14px;
+}
+input[type="search"]::-webkit-input-placeholder {
+color: #ccc;
+} 
+input[type="search"]::-moz-placeholder {
+color: #ccc;
+}
+.search .input:focus {
+    background: #E8E8E8;
+    color: #333;
+}
+.search .button {
+	position: absolute;
+    top: 1px;
+    right: 1px;
+    width: 37px;
+    height: 32px;
+    background-color: #314564;
+}
+.header_button{
+    background-color: #314564;
+    border: none;
+    grid-column: 5 / 6;
+}
+.header_button a {
+    color: #fff;
+    font-size: 14px;
+    line-height: 36px;
+}
+
+
+/* =============== container ================== */
+.main {
+    padding: 50px 15px;
+    display: grid;
+    grid-template: 1fr / 1fr minmax(auto, 1200px) 1fr;  
+    grid-template-areas: 
+    "willkomen"
+    "products"
+    "gallery"; 
+}
+
+/* =============== willkommen ================== */
+
+.willkommen {
+    grid-area: willkomen;
+    grid-column: 2 / 3;
+}
+.willkommem_text p {
+    line-height: 30px;
+    font-size: 18px;
+}
+
+.willkommem_image{
+    display: none;
+}
+
+
+
+/* =============== products ================== */
+
+.products {
+    grid-area: products;
+    grid-column: 2 / 3;
+    margin-top: 160px;
+ }
+.products_link {
+    font-size: 18px;
+    font-weight: 600;
+    text-align: center;
+    padding: 100px 0 50px 0;
+}
+.products_link a {
+    color: #182e49;
+}
+.products_items {
+    display: grid;
+    column-gap: 30px;
+    row-gap: 100px;
+    /* при изменении размера описания товара, размер карточки товара останется прапорциональным */
+    grid-template-columns: repeat(auto-fit, minmax(250px, 1fr));
+    /* размер одного товара большой, то растояния будут увеличиваться у всех коточек в каталоге 
+    ! Flex так не может*/
+    /* grid-auto-rows: 1fr; */
+}
+.product_item {
+    display: grid;
+    /* выстраиваем все объекты автоматически по вертикали, сделает их отдельными рядами */
+    grid-auto-flow: row;
+    /* картинка - auto
+     название товар - 1fr все доступное пространство
+     кнопка - minmax(40px, auto) мин. высота 40px максимальная auto
+     колонка одна, на всю шинину 1fr
+    */
+    grid-template: auto 1fr minmax(40px, auto) / 1fr;
+}
+.product_image {
+    position: relative;
+    padding: 0px 0px 90% 0px;
+    margin: 0px 0px 20px 0px;
+}
+/* ! свойства, которые позволяют картинке вписываться в объект */
+.product_image img{
+    width: 100%;
+    height: 100%;
+    position: absolute;
+    top: 0;
+    left: 0;
+    object-fit: contain;
+}
+.product_name {
+    font-size: 18px;
+    line-height: 30px;
+    margin-bottom: 20px;
+    justify-self: center;
+    color: #000;
+}
+.product_button {
+    color: #fff;
+    text-transform: uppercase;
+    letter-spacing: 2px;
+    text-decoration: none;
+    line-height: 40px;
+    /* отменяет растягивание кнопки на всю ширину */
+    justify-self: center;
+    background-color: #385074;
+    padding: 0 20px;
+    font-size: 14px;
+}
+
+/* =============== gallery ================== */
+
+.gallery {
+    grid-area: gallery;
+    grid-column: 2 / 3;
+    margin: 200px 0;
+}
+.gallery_items {
+    display: grid;
+    gap: 10px;
+    grid-template-columns: repeat(auto-fit, minmax(250px, 1fr));
+    /* 
+    ячейки выстраиваются по ширине автоматисески и переходять на новую строку (repeat) 
+    auto-fit будут занимать всё доступное пространство*/
+}
+.gallery_item {
+    position: relative;
+    padding-bottom: 85%;
+}
+.gallery_item img{
+    position: absolute;
+    top: 0;
+    left: 0;
+    width: 100%;
+    height: 100%;
+    object-fit: cover;
+}
+
+.footer {
+    grid-area: footer;
+    padding: 15px;
+    background-color: #182e49;
+    display: grid;
+    grid-template: 1fr / 1fr minmax(auto, 600px) minmax(auto, 600px) 1fr;
+    align-items: center;
+    color: #fff;
+}    
+.footer_copy {
+    grid-column: 2 / 3;
+}
+.footer_text {
+    grid-column: 3 / 4;
+    text-align: right;
+}
+
+/* экраны более 992px */
+@media (min-width: 992px){
+    .header_seach {
+        grid-column: 4 / 5;
+    }
+    .search {
+        width: 80%;
+    }
+    .header_button{
+        grid-column: 5 / 6;
+    }
+    .gallery_item_big {
+        grid-column: span 2;
+        grid-row: span 2;
+        /* 
+        span обозначает, сколько объект заберет для себя ячеек */
+    }
+    .willkommen{
+        display: grid;
+        grid-template: 1fr / minmax(auto, 600px) minmax(auto, 450px);
+        justify-content: space-between;
+    }
+    .willkommem_image {
+        display: block;
+    }
+    .willkommem_image img{
+        height: 300px;
+        background-size: contain;
+    }
+}
