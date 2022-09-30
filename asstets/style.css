@@ -19,7 +19,7 @@ h1 {
     ряд 3: подвал мин. 70px макс. auto
     колонки во всю ширину 1fr
     */
-    grid-template: minmax(140px, auto) 1fr minmax(140px, auto) / 1fr;   
+    grid-template: minmax(150px, auto) 1fr minmax(140px, auto) / 1fr;   
     /* даем названия элементам, для понятности */
     grid-template-areas: 
         "header"
@@ -33,7 +33,7 @@ h1 {
     grid-area: header;
     background-color: #182e49;
     display: grid;
-    grid-template: 1fr 1fr / 1fr minmax(auto, 300px) minmax(auto, 450px) minmax(auto, 300px) minmax(auto, 150px) 1fr;
+    grid-template: 1fr 1fr / 1fr minmax(auto, 200px) minmax(auto, 550px) minmax(auto, 300px) minmax(auto, 150px) 1fr;
     align-items: center;
     color: #fff;
     padding: 0 15px;
@@ -102,7 +102,7 @@ color: #ccc;
 
 /* =============== container ================== */
 .main {
-    padding: 50px 15px;
+    padding: 70px 15px;
     display: grid;
     grid-template: 1fr / 1fr minmax(auto, 1200px) 1fr;  
     grid-template-areas: 
